@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>21</java.version>
-        <start-class>com.cqrs.demo.DemoApplication</start-class>
+        <start-class>com.example.payments.PaymentsApplication</start-class>
         <postgresql.version>42.7.7</postgresql.version>
         <h2database.version>2.3.232</h2database.version>
         <openapi.starter.version>2.5.0</openapi.starter.version>
