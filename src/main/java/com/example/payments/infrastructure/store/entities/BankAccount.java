@@ -1,5 +1,6 @@
 package com.example.payments.infrastructure.store.entities;
 
+import com.example.payments.domain.dto.BankAccountStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

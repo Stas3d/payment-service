@@ -1,4 +1,4 @@
-package com.example.payments.infrastructure.store.entities;
+package com.example.payments.domain.dto;
 
 public enum BankAccountStatus {
 
