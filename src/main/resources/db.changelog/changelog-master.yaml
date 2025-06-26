@@ -3,7 +3,7 @@ databaseChangeLog:
       file: scripts/create_customer_table.sql
   - include:
       file: scripts/create_bank_account_table.sql
-  - include:
-      file: scripts/create_payment_transaction_table.sql
-  - include:
-      file: scripts/create_payment_transaction_refund_table.sql
+#  - include:
+#      file: scripts/create_payment_transaction_table.sql
+#  - include:
+#      file: scripts/create_payment_transaction_refund_table.sql
