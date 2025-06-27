@@ -2,9 +2,8 @@ package com.example.payments.infrastructure.store.entities;
 
 import com.example.payments.domain.dto.CustomerStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,10 +22,12 @@ public class Customer {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "number", nullable = false, unique = true)
+    @Column(name = "customer_number", nullable = false, unique = true)
     private UUID customerNumber;
 
     @OneToMany
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private List<BankAccount> accounts;
 
     @Column(name = "first_name")
@@ -46,6 +47,7 @@ public class Customer {
     private String customerPhone;
 
     @Column(name = "created_at")
+    @CreationTimestamp
     private Date createdAt;
 
     public Customer(UUID customerNumber,
