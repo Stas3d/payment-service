@@ -21,15 +21,16 @@ public class PaymentTransaction {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "number", nullable = false, unique = true)
+    @Column(name = "tx_number", nullable = false, unique = true)
     private UUID number;
 
-    @Column(name = "ammount", nullable = false)
-    private String ammount;
+    @Column(name = "amount", nullable = false)
+    private String amount;
 
     @Column(name = "currency", nullable = false)
     private String currency;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private PaymentTransactionStatus status;
 
@@ -41,4 +42,13 @@ public class PaymentTransaction {
 
     @Column(name = "executed_at")
     private Date executedAt;
+
+    public PaymentTransaction(UUID number,
+                              String amount,
+                              String currency) {
+        this.number = number;
+        this.amount = amount;
+        this.currency = currency;
+        this.status = PaymentTransactionStatus.INITIATED;
+    }
 }
