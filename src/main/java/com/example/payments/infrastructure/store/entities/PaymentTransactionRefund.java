@@ -2,9 +2,7 @@ package com.example.payments.infrastructure.store.entities;
 
 import com.example.payments.domain.dto.PaymentTransactionRefundStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 import java.util.UUID;
@@ -21,11 +19,14 @@ public class PaymentTransactionRefund {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "tx_refund_number", nullable = false, unique = true)
-    private UUID number;
+    @Column(name = "transaction_refund_number", nullable = false, unique = true)
+    private UUID transactionNumber;
 
-    @Column(name = "payment_transaction_number", nullable = false, unique = true)
-    private UUID paymentTransaction;
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "payment_transactions_id")
+    private PaymentTransaction paymentTransaction;
 
     @Column(name = "refunded_amount", nullable = false)
     private String refundedAmount;
@@ -46,12 +47,10 @@ public class PaymentTransactionRefund {
     @Column(name = "executed_at")
     private Date executedAt;
 
-    public PaymentTransactionRefund(UUID number,
-                                    UUID paymentTransaction,
+    public PaymentTransactionRefund(UUID transactionNumber,
                                     String refundedAmount,
                                     String currency) {
-        this.number = number;
-        this.paymentTransaction = paymentTransaction;
+        this.transactionNumber = transactionNumber;
         this.refundedAmount = refundedAmount;
         this.currency = currency;
         this.status = PaymentTransactionRefundStatus.INITIATED;

@@ -2,11 +2,12 @@ package com.example.payments.infrastructure.store.entities;
 
 import com.example.payments.domain.dto.PaymentTransactionStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -21,8 +22,13 @@ public class PaymentTransaction {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "tx_number", nullable = false, unique = true)
-    private UUID number;
+    @Column(name = "transaction_number", nullable = false, unique = true)
+    private UUID transactionNumber;
+
+    @OneToMany
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private List<PaymentTransactionRefund> refunds;
 
     @Column(name = "amount", nullable = false)
     private String amount;
@@ -38,17 +44,19 @@ public class PaymentTransaction {
     private String errorMessage;
 
     @Column(name = "created_at")
+    @CreationTimestamp
     private Date createdAt;
 
     @Column(name = "executed_at")
     private Date executedAt;
 
-    public PaymentTransaction(UUID number,
+    public PaymentTransaction(UUID transactionNumber,
                               String amount,
                               String currency) {
-        this.number = number;
+        this.transactionNumber = transactionNumber;
         this.amount = amount;
         this.currency = currency;
+        this.refunds = new ArrayList<>();
         this.status = PaymentTransactionStatus.INITIATED;
     }
 }

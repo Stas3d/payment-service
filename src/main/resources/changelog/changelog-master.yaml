@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: scripts/create_customers_table.sql
+  - include:
+      file: scripts/create_bank_accounts_table.sql
+  - include:
+      file: scripts/create_payment_transactions_table.sql
+  - include:
+      file: scripts/create_payment_transactions_refund_table.sql

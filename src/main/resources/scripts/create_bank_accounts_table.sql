@@ -8,7 +8,3 @@ create TABLE IF NOT EXISTS accounts (
       status VARCHAR(255) NOT NULL,
       created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
-
-
---      FOREIGN KEY (fk) references accounts(id)
---
