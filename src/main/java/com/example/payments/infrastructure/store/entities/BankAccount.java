@@ -2,9 +2,8 @@ package com.example.payments.infrastructure.store.entities;
 
 import com.example.payments.domain.dto.BankAccountStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 import java.util.UUID;
@@ -21,12 +20,14 @@ public class BankAccount {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "number", nullable = false, unique = true)
+    @Column(name = "account_number", nullable = false, unique = true)
     private UUID accountNumber;
 
     @ManyToOne
     @JoinColumn(name = "customers_id")
-    private Customer customerId;
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Customer customer;
 
     @Column(name = "balance")
     private String balance;
@@ -39,6 +40,7 @@ public class BankAccount {
     private BankAccountStatus status;
 
     @Column(name = "created_at")
+    @CreationTimestamp
     private Date createdAt;
 
     public BankAccount(UUID accountNumber,

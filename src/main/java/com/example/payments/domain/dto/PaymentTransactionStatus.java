@@ -5,7 +5,8 @@ public enum PaymentTransactionStatus {
     INITIATED,
     PROCESSING,
     FRAUD,
-    CLOSED,
+    COMPLETED,
+    FAILED,
     REJECTED,
 
 }

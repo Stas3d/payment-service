@@ -4,7 +4,8 @@ public enum PaymentTransactionRefundStatus {
 
     INITIATED,
     REJECTED,
-    PROCESSED,
+    COMPLETED,
+    FAILED,
     FRAUD
 
 }
