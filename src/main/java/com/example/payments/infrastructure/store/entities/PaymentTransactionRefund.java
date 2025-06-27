@@ -21,18 +21,19 @@ public class PaymentTransactionRefund {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "number", nullable = false, unique = true)
+    @Column(name = "tx_refund_number", nullable = false, unique = true)
     private UUID number;
 
     @Column(name = "payment_transaction_number", nullable = false, unique = true)
     private UUID paymentTransaction;
 
-    @Column(name = "refunded_ammount", nullable = false)
-    private String refundedAmmount;
+    @Column(name = "refunded_amount", nullable = false)
+    private String refundedAmount;
 
     @Column(name = "currency", nullable = false)
     private String currency;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private PaymentTransactionRefundStatus status;
 
@@ -44,4 +45,15 @@ public class PaymentTransactionRefund {
 
     @Column(name = "executed_at")
     private Date executedAt;
+
+    public PaymentTransactionRefund(UUID number,
+                                    UUID paymentTransaction,
+                                    String refundedAmount,
+                                    String currency) {
+        this.number = number;
+        this.paymentTransaction = paymentTransaction;
+        this.refundedAmount = refundedAmount;
+        this.currency = currency;
+        this.status = PaymentTransactionRefundStatus.INITIATED;
+    }
 }

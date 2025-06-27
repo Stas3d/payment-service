@@ -1,5 +1,6 @@
 package com.example.payments.infrastructure.store.entities;
 
+import com.example.payments.domain.dto.CustomerStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,8 +38,9 @@ public class Customer {
     @Column(name = "country")
     private String country;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private String status;
+    private CustomerStatus status;
 
     @Column(name = "phone")
     private String customerPhone;

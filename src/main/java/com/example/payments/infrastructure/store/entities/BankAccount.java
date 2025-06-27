@@ -34,6 +34,7 @@ public class BankAccount {
     @Column(name = "currency", nullable = false)
     private String currency;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private BankAccountStatus status;
 
