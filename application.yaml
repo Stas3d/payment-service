@@ -33,6 +33,11 @@ spring:
     change-log: classpath:changelog/changelog-master.yaml
     default-schema: public
 
+  kafka:
+#    bootstrap-servers: "kafka:9092"
+#    bootstrap-servers: kafka:9092
+    bootstrap-servers: "192.168.1.100:9092,192.168.1.101:9092"
+
 management:
   endpoints:
     web:
